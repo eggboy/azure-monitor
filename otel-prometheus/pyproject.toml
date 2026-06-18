@@ -1,0 +1,44 @@
+[project]
+name = "otel-prometheus"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Jay Lee", email = "eggboy@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "azure-identity>=1.19",
+    "opentelemetry-exporter-prometheus-remote-write>=0.48b0",
+    "opentelemetry-sdk>=1.27",
+    "python-dotenv>=1.0",
+]
+
+[project.scripts]
+otel-prometheus = "otel_prometheus:main"
+
+[build-system]
+requires = ["uv_build>=0.11.21,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "D"]
+ignore = ["D203", "D213"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.deptry]
+known_first_party = ["otel_prometheus"]
